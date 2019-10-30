@@ -11,7 +11,7 @@ namespace ThreadStats
     {
 
 
-        public static void PrintNumbers()
+        public static void PrintNumbers(object data)
         {
             Random random = new Random();
             // Show thread summary
@@ -19,7 +19,7 @@ namespace ThreadStats
 
             for (int i = 1; i < 11; i++)
             {
-                Console.WriteLine($"{Thread.CurrentThread.Name} - {i}"); // Print thread name and int i
+                Console.WriteLine($"{Thread.CurrentThread.ManagedThreadId} - {i}"); // Print thread name and int i
                 int sleepTime = random.Next(50, 1000);
                 Thread.Sleep(sleepTime); // Sleep for random amount of time between 50 and 1000ms.
             }
