@@ -18,15 +18,15 @@ namespace ThreadStats
 
             Thread.CurrentThread.Name = "MainThread"; // Set main name
 
-            PrintThreadInfo(); // Call info function from main thread
+            Printer.PrintThreadInfo(); // Call info function from main thread
+
+            Printer.StartPrint();
+
 
             Console.ReadKey();
 
         }
 
-        public static void PrintThreadInfo()
-        {
-            Console.WriteLine($"Name: {Thread.CurrentThread.Name} \n Priority: {Thread.CurrentThread.Priority} \n State: {Thread.CurrentThread.ThreadState} \n Is background thread: {Thread.CurrentThread.IsBackground}");
-        }
+
     }
 }
