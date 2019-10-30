@@ -26,6 +26,7 @@ namespace ThreadStats
             {
                 Thread worker = new Thread(PrintNumbers); // Create a new thread and delegate a method to run
                 worker.Name = "Worker"; // Give it a name
+                worker.IsBackground = true; // Make it a background thread.
                 worker.Start(); // Start the worker thread and allow the function to run in a separate thread
 
                 PrintNumbers(); // Run it in the current thread too.
