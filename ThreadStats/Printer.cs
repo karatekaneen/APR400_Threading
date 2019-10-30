@@ -9,6 +9,8 @@ namespace ThreadStats
 {
     class Printer
     {
+        static bool done;
+        static readonly object locker = new object();
 
 
         public static void PrintNumbers(object data)
@@ -17,11 +19,18 @@ namespace ThreadStats
             // Show thread summary
             PrintThreadInfo(); 
 
-            for (int i = 1; i < 11; i++)
+            lock (locker)
             {
-                Console.WriteLine($"{Thread.CurrentThread.ManagedThreadId} - {i}"); // Print thread name and int i
-                int sleepTime = random.Next(50, 1000);
-                Thread.Sleep(sleepTime); // Sleep for random amount of time between 50 and 1000ms.
+                if (!done)
+                {
+                    for (int i = 1; i < 11; i++)
+                    {
+                        Console.WriteLine($"{Thread.CurrentThread.ManagedThreadId} - {i}"); // Print thread name and int i
+                        int sleepTime = random.Next(50, 1000);
+                        Thread.Sleep(sleepTime); // Sleep for random amount of time between 50 and 1000ms.
+                    }
+                    done = true;
+                }
             }
         }
 
